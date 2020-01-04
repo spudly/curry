@@ -1,0 +1,23 @@
+{
+  "name": "@spudly/curry",
+  "main": "build/curry.js",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "prepare": "npm run build",
+    "test": "jest"
+  },
+  "license": "ISC",
+  "repository": "https://github.com/spudly/sandbox/tree/master/packages/curry",
+  "files": [
+    "build"
+  ],
+  "devDependencies": {
+    "@types/jest": "^24.0.25",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.4"
+  },
+  "mainSrc": "src/curry.ts",
+  "sideEffects": false
+}
