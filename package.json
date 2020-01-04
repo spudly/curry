@@ -3,9 +3,10 @@
   "main": "build/curry.js",
   "version": "0.0.0",
   "scripts": {
-    "build": "tsc -b tsconfig.json",
-    "prepare": "npm run build",
-    "test": "jest"
+    "build": "tsc",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=0",
+    "test": "jest",
+    "prepare": "npm run build"
   },
   "license": "ISC",
   "repository": "https://github.com/spudly/sandbox/tree/master/packages/curry",
@@ -14,10 +15,43 @@
   ],
   "devDependencies": {
     "@types/jest": "^24.0.25",
+    "@typescript-eslint/eslint-plugin": "^2.14.0",
+    "@typescript-eslint/parser": "^2.14.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0",
+    "eslint-config-react-app": "^5.1.0",
+    "eslint-plugin-flowtype": "^4.5.3",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "husky": "^3.1.0",
     "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
     "ts-jest": "^24.2.0",
     "typescript": "^3.7.4"
   },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "eslintIgnore": [
+    "node_modules",
+    "build"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && yarn lint && yarn test && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0 --fix",
+      "git add"
+    ]
+  },
+  "author": "Stephen John Sorensen <shuoink@gmail.com>",
   "mainSrc": "src/curry.ts",
   "sideEffects": false
 }
