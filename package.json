@@ -9,7 +9,7 @@
     "prepare": "npm run build"
   },
   "license": "ISC",
-  "repository": "https://github.com/spudly/sandbox/tree/master/packages/curry",
+  "repository": "https://github.com/spudly/curry",
   "files": [
     "build"
   ],
