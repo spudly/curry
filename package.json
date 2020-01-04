@@ -1,12 +1,13 @@
 {
   "name": "@spudly/curry",
   "main": "build/curry.js",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "scripts": {
     "build": "tsc",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=0",
     "test": "jest",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "semantic-release": "semantic-release"
   },
   "license": "ISC",
   "repository": "https://github.com/spudly/curry",
@@ -14,14 +15,17 @@
     "build"
   ],
   "devDependencies": {
+    "@semantic-release/changelog": "^3.0.6",
+    "@semantic-release/git": "^7.0.18",
+    "@spudly/eslint-config": "^6.0.0",
     "@types/jest": "^24.0.25",
     "eslint": "^6.8.0",
-    "@spudly/eslint-config": "^6.0.0",
     "husky": "^3.1.0",
     "jest": "^24.9.0",
     "lint-staged": "^9.5.0",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
+    "semantic-release": "^15.14.0",
     "ts-jest": "^24.2.0",
     "typescript": "^3.7.4"
   },
@@ -44,6 +48,5 @@
     ]
   },
   "author": "Stephen John Sorensen <shuoink@gmail.com>",
-  "mainSrc": "src/curry.ts",
   "sideEffects": false
 }
