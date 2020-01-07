@@ -1,33 +1,59 @@
 {
   "name": "@spudly/curry",
-  "main": "build/curry.js",
   "version": "0.0.0-development",
+  "repository": "https://github.com/spudly/curry",
+  "license": "ISC",
+  "author": "Stephen John Sorensen <shuoink@gmail.com>",
+  "files": [
+    "build",
+    "bin"
+  ],
+  "sideEffects": false,
+  "main": "build/curry.js",
   "scripts": {
     "build": "tsc",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=0",
-    "test": "jest",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prepare": "npm run build",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "test": "jest"
   },
-  "license": "ISC",
-  "repository": "https://github.com/spudly/curry",
-  "files": [
-    "build"
-  ],
-  "devDependencies": {
-    "@semantic-release/changelog": "^3.0.6",
-    "@semantic-release/git": "^7.0.18",
-    "@spudly/eslint-config": "^6.0.0",
-    "@types/jest": "^24.0.25",
-    "eslint": "^6.8.0",
-    "husky": "^3.1.0",
-    "jest": "^24.9.0",
-    "lint-staged": "^9.5.0",
-    "prettier": "^1.19.1",
-    "pretty-quick": "^2.0.1",
-    "semantic-release": "^15.14.0",
-    "ts-jest": "^24.2.0",
-    "typescript": "^3.7.4"
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx config-config --stage && npm run lint && npm run test && lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{json,md,htm,html,css}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0 --fix",
+      "git add"
+    ],
+    "package.json": [
+      "sort-package-json",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "bracketSpacing": false,
+    "endOfLine": "lf",
+    "proseWrap": "always",
+    "singleQuote": true,
+    "trailingComma": "all"
   },
   "eslintConfig": {
     "extends": "@spudly"
@@ -36,17 +62,75 @@
     "node_modules",
     "build"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged && yarn lint && yarn test && lint-staged"
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.js",
+      "**/*.jsx",
+      "!**/node_modules/**"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/build/",
+      "[.]config[.]js",
+      "/coverage/",
+      "[.]stories[.]"
+    ],
+    "globals": {
+      "ts-jest": {
+        "isolatedModules": true
+      }
+    },
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "build",
+      "[.]stories[.]"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
     }
   },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0 --fix",
-      "git add"
-    ]
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.4",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@semantic-release/changelog": "^3.0.6",
+    "@semantic-release/git": "^7.0.18",
+    "@spudly/config-config": "^1.2.2",
+    "@spudly/eslint-config": "^6.0.0",
+    "@types/jest": "^24.0.25",
+    "@types/node": "^13.1.4",
+    "eslint": "^6.8.0",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
+    "semantic-release": "^15.14.0",
+    "sort-package-json": "^1.36.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.4"
   },
-  "author": "Stephen John Sorensen <shuoink@gmail.com>",
-  "sideEffects": false
+  "publishConfig": {
+    "access": "public"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "CHANGELOG.md"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  }
 }
