@@ -1,6 +1,6 @@
 {
   "name": "@spudly/curry",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "repository": "https://github.com/spudly/curry",
   "license": "ISC",
   "author": "Stephen John Sorensen <shuoink@gmail.com>",
