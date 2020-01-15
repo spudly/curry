@@ -5,6 +5,7 @@
     "bin",
     "build"
   ],
+  "main": "build/curry.js",
   "scripts": {
     "build": "spudly-scripts build",
     "lint": "spudly-scripts lint",
