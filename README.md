@@ -23,7 +23,7 @@ Creates a curried function
 ## Installation
 
 ```bash
-npm install --save-dev @spudly/curry
+npm install --save @spudly/curry
 ```
 
 ## Usage
