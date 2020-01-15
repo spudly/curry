@@ -1,52 +1,25 @@
 {
   "name": "@spudly/curry",
   "version": "1.0.0",
-  "repository": "https://github.com/spudly/curry",
-  "license": "ISC",
-  "author": "Stephen John Sorensen <shuoink@gmail.com>",
   "files": [
     "bin",
     "build"
   ],
-  "sideEffects": false,
-  "main": "build/curry.js",
   "scripts": {
-    "build": "tsc",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "build": "spudly-scripts build",
+    "lint": "spudly-scripts lint",
     "prepare": "npm run build",
-    "semantic-release": "semantic-release",
-    "test": "jest"
+    "test": "spudly-scripts test"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx config-config --stage && npm run lint && npm run test && lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "pre-commit": [
+        "spudly-scripts pre-commit"
+      ],
+      "commit-msg": [
+        "spudly-scripts commit-msg"
+      ]
     }
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint --fix",
-      "git add"
-    ],
-    "*.{json,md,htm,html,css}": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.{ts,tsx}": [
-      "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0 --fix",
-      "git add"
-    ],
-    "package.json": [
-      "sort-package-json",
-      "prettier --write",
-      "git add"
-    ]
   },
   "prettier": {
     "bracketSpacing": false,
@@ -62,75 +35,11 @@
     "node_modules",
     "build"
   ],
-  "jest": {
-    "collectCoverageFrom": [
-      "**/*.ts",
-      "**/*.tsx",
-      "**/*.js",
-      "**/*.jsx",
-      "!**/node_modules/**"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/build/",
-      "[.]config[.]js",
-      "/coverage/",
-      "[.]stories[.]"
-    ],
-    "globals": {
-      "ts-jest": {
-        "isolatedModules": true
-      }
-    },
-    "testEnvironment": "node",
-    "testPathIgnorePatterns": [
-      "build",
-      "[.]stories[.]"
-    ],
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    }
-  },
   "devDependencies": {
-    "@commitlint/cli": "^8.3.4",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@semantic-release/changelog": "^3.0.6",
-    "@semantic-release/git": "^8.0.0",
-    "@spudly/config-config": "^2.1.2",
-    "@spudly/eslint-config": "^6.0.0",
-    "@types/jest": "^24.0.25",
-    "@types/node": "^13.1.6",
-    "eslint": "^6.8.0",
-    "husky": "^4.0.6",
-    "jest": "^24.9.0",
-    "lint-staged": "^9.5.0",
-    "prettier": "^1.19.1",
-    "pretty-quick": "^2.0.1",
-    "semantic-release": "^16.0.1",
-    "sort-package-json": "^1.38.3",
-    "ts-jest": "^24.3.0",
-    "typescript": "^3.7.4"
+    "@spudly/scripts": "^1.0.0",
+    "@types/jest": "^24.0.25"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "release": {
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/github",
-      [
-        "@semantic-release/git",
-        {
-          "assets": [
-            "package.json",
-            "CHANGELOG.md"
-          ],
-          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-        }
-      ]
-    ]
   }
 }

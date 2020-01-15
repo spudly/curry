@@ -7,5 +7,5 @@ etc.
 ## Helpful Links
 
 - [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
-- [@spudly/config-config](https://github.com/spudly/config-config)
+- [@spudly/curry](https://github.com/spudly/curry)
 - [all-contributors](https://github.com/all-contributors/all-contributors)

@@ -1,9 +1,9 @@
 # @spudly/curry
 
-Creates a curried function.
+Creates a curried function
 
-<!-- config-config:badges-start -->
 <!-- prettier-ignore-start -->
+
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/spudly/curry/build?style=flat-square)
 [![Codecov](https://img.shields.io/codecov/c/github/spudly/curry?style=flat-square)](https://codecov.io/gh/spudly/curry)
 [![version](https://img.shields.io/npm/v/@spudly/curry.svg?style=flat-square)](https://www.npmjs.com/package/@spudly/curry)
@@ -17,17 +17,16 @@ Creates a curried function.
 [![Watch on GitHub](https://img.shields.io/github/watchers/spudly/curry.svg?style=social)](https://github.com/spudly/curry/watchers)
 [![Star on GitHub](https://img.shields.io/github/stars/spudly/curry.svg?style=social)](https://github.com/spudly/curry/stargazers)
 [![Tweet](https://img.shields.io/twitter/url/https/github.com/spudly/curry.svg?style=social)](https://twitter.com/intent/tweet?text=Check%20out%20curry%20https%3A%2F%2Fgithub.com%2Fspudly%2Fcurry)
-<!-- prettier-ignore-end -->
 
-<!-- config-config:badges-end -->
+  <!-- prettier-ignore-end -->
 
-# Installation
+## Installation
 
 ```bash
-npm install --save @spudly/curry
+npm install --save-dev @spudly/curry
 ```
 
-# Usage
+## Usage
 
 ```js
 import curry from '@spudly/curry';
@@ -38,3 +37,12 @@ curriedAdd(1, 2)(3); // => 6
 curriedAdd(1)(2, 3); // => 6
 curriedAdd(1)(2)(3); // => 6
 ```
+
+## Contributors
+
+  <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+  <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the
+[all-contributors](https://github.com/all-contributors/all-contributors)
+specification. Contributions of any kind welcome!
